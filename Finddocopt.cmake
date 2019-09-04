@@ -8,8 +8,9 @@ find_path(DOCOPT_INCLUDE_DIR
     NO_DEFAULT_PATH
 )
 
+
 find_library(DOCOPT_LIBRARY
-    NAMES docopt_s
+    NAMES docopt_s libdocopt.a
     PATHS ${CONAN_LIB_DIRS_DOCOPT}
     NO_DEFAULT_PATH
 )

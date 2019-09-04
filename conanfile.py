@@ -47,9 +47,9 @@ class docoptConan(ConanFile):
         self.copy("Finddocopt.cmake", dst=".", src=".")
         self.copy("docopt.h", dst="include", src="src")
         self.copy("docopt_value.h", dst="include", src="src")
-        self.copy("docopt_s.a", dst="lib", src="lib")
         self.copy("docopt_s.lib", dst="lib", src="lib")
         self.copy("docopt_s.pdb", dst="bin", src="lib")
+        self.copy("libdocopt.a", dst="lib", src="lib")
 
     def package_id(self):
         self.info.options.with_unit_tests = "any"
