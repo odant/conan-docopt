@@ -25,3 +25,34 @@ index ee01e7c..436b07a 100644
  endif()
  
  #============================================================================
+diff --git a/src/run_tests.py b/src/run_tests.py
+index ef723b4..39d0969 100755
+--- a/src/run_tests.py
++++ b/src/run_tests.py
+@@ -56,17 +56,17 @@ for _, doc, cases in parse_test(tests):
+ 
+ 		failures += 1
+ 
+-		print "="*40
+-		print doc
+-		print ':'*20
+-		print prog, argv
+-		print '-'*20
++		print("="*40)
++		print(doc)
++		print(':'*20)
++		print(prog, argv)
++		print('-'*20)
+ 		if out:
+-			print out
+-		print error
++			print(out)
++		print(error)
+ 
+ if failures:
+-	print "%d failures" % failures
++	print("%d failures" % failures)
+ 	sys.exit(1)
+ else:
+-	print "PASS (%d)" % passes
++	print("PASS (%d)" % passes)
