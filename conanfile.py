@@ -22,7 +22,7 @@ class docoptConan(ConanFile):
     }
     default_options = "with_unit_tests=False"
     generators = "cmake"
-    exports_sources = "src/*", "CMakeLists.txt", "fix_tests.patch"
+    exports_sources = "src/*", "CMakeLists.txt", "fix_tests.patch", "Finddocopt.cmake"
     no_copy_source = True
     build_policy = "missing"
 
@@ -42,9 +42,9 @@ class docoptConan(ConanFile):
                 self.run("ctest --verbose --build-config %s" % build_type)
             else:
                 self.run("ctest --verbose")
-        #cmake.install()
 
     def package(self):
+        self.copy("Finddocopt.cmake", dst=".", src=".")
         self.copy("docopt.h", dst="include", src="src")
         self.copy("docopt_value.h", dst="include", src="src")
         self.copy("docopt_s.a", dst="lib", src="lib")

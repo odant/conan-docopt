@@ -12,7 +12,7 @@ conan_basic_setup(TARGETS)
 enable_testing()
 
 
-# CONAN_PKG::tinyxml2 imported target
+# CONAN_PKG::docopt imported target
 
 add_executable(test_docopt_CONAN_PKG test_docopt.cpp)
 target_link_libraries(test_docopt_CONAN_PKG CONAN_PKG::docopt)
@@ -25,4 +25,21 @@ add_test(
     NAME test_docopt_CONAN_PKG
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     COMMAND test_docopt_CONAN_PKG --help
+)
+
+
+# docopt_s imported target
+
+find_package(docopt REQUIRED)
+add_executable(test_docopt test_docopt.cpp)
+target_link_libraries(test_docopt docopt_s)
+set_target_properties(test_docopt
+    PROPERTIES
+    INSTALL_RPATH "$ORIGIN"
+    BUILD_WITH_INSTALL_RPATH True
+)
+add_test(
+    NAME test_docopt
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+    COMMAND test_docopt --help
 )
