@@ -42,17 +42,14 @@ class docoptConan(ConanFile):
                 self.run("ctest --verbose --build-config %s" % build_type)
             else:
                 self.run("ctest --verbose")
+        #cmake.install()
 
     def package(self):
-        return
-        self.copy("Findtinyxml2.cmake", dst=".", src=".")
-        self.copy("tinyxml2.h", dst="include", src="src")
-        self.copy("tinyxml2.lib", dst="lib", src="lib")
-        self.copy("tinyxml2d.lib", dst="lib", src="lib")
-        self.copy("libtinyxml2.a", dst="lib", src="lib")
-        self.copy("libtinyxml2d.a", dst="lib", src="lib")
-        self.copy("*tinyxml2.pdb", dst="bin", src="src", keep_path=False)
-        self.copy("*tinyxml2d.pdb", dst="bin", src="src", keep_path=False)
+        self.copy("docopt.h", dst="include", src="src")
+        self.copy("docopt_value.h", dst="include", src="src")
+        self.copy("docopt_s.a", dst="lib", src="lib")
+        self.copy("docopt_s.lib", dst="lib", src="lib")
+        self.copy("docopt_s.pdb", dst="bin", src="lib")
 
     def package_id(self):
         self.info.options.with_unit_tests = "any"
