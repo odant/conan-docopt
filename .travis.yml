@@ -64,13 +64,13 @@ matrix:
        CONAN_ARCHS: x86
 
       env:
-       CONAN_GCC_VERSIONS: 8
+       CONAN_GCC_VERSIONS: 9
        CONAN_DOCKER_IMAGE: conanio/gcc9
        CONAN_ARCHS: x86_64
 
     - <<: *linux_build
       env:
-       CONAN_GCC_VERSIONS: 8
+       CONAN_GCC_VERSIONS: 9
        CONAN_DOCKER_IMAGE: conanio/gcc9
        CONAN_ARCHS: x86
 
