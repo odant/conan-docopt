@@ -1,0 +1,27 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index ee01e7c..436b07a 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -100,16 +100,19 @@ endif()
+ # Tests
+ #============================================================================
+ if(WITH_TESTS)
+-	set(TESTPROG "${CMAKE_CURRENT_BINARY_DIR}/run_testcase")
++	set(TESTPROG "${CMAKE_BINARY_DIR}/bin/run_testcase")
+ 	set(TESTCASES "${PROJECT_SOURCE_DIR}/testcases.docopt")
+ 	add_executable(run_testcase run_testcase.cpp)
+-	target_link_libraries(run_testcase docopt)
++	target_link_libraries(run_testcase docopt_s)
+ 	configure_file(
+ 			"${PROJECT_SOURCE_DIR}/run_tests.py"
+ 			"${CMAKE_CURRENT_BINARY_DIR}/run_tests"
+ 			ESCAPE_QUOTES
+ 	)
+-	add_test("Testcases docopt" ${TESTPROG})
++	add_test(
++		NAME "Testcases_docopt"
++		COMMAND python "${CMAKE_CURRENT_BINARY_DIR}/run_tests"
++	)
+ endif()
+ 
+ #============================================================================
