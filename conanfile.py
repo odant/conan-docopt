@@ -1,5 +1,5 @@
 # docopt Conan package
-# Dmitriy Vetutnev, Odant 2019
+# Dmitriy Vetutnev, Odant 2019 - 2020
 
 
 from conans import ConanFile, CMake, tools
@@ -7,7 +7,7 @@ from conans import ConanFile, CMake, tools
 
 class docoptConan(ConanFile):
     name = "docopt"
-    version = "0.6.2"
+    version = "0.6.2+1"
     license = "MIT https://github.com/docopt/docopt.cpp/blob/master/LICENSE-MIT"
     description = "docopt creates beautiful command-line interfaces"
     url = "https://github.com/odant/conan-docopt"
@@ -22,12 +22,13 @@ class docoptConan(ConanFile):
     }
     default_options = "with_unit_tests=False"
     generators = "cmake"
-    exports_sources = "src/*", "CMakeLists.txt", "fix_tests.patch", "Finddocopt.cmake"
+    exports_sources = "src/*", "CMakeLists.txt", "fix_tests.patch", "fix_MSVC_2019.patch", "Finddocopt.cmake"
     no_copy_source = True
     build_policy = "missing"
 
     def source(self):
         tools.patch(patch_file="fix_tests.patch")
+        tools.patch(patch_file="fix_MSVC_2019.patch")
 
     def build(self):
         build_type = "RelWithDebInfo" if self.settings.build_type == "Release" else "Debug"
