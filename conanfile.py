@@ -21,7 +21,10 @@ class docoptConan(ConanFile):
         "with_unit_tests": [True, False],
         "ninja": [True, False]
     }
-    default_options = "with_unit_tests=False", "ninja=True"
+    default_options = {
+        "with_unit_tests": False,
+        "ninja": True
+    }
     generators = "cmake"
     exports_sources = "src/*", "CMakeLists.txt", "fix_tests.patch", "fix_MSVC_2019.patch", "Finddocopt.cmake"
     no_copy_source = True
