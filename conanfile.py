@@ -32,7 +32,7 @@ class docoptConan(ConanFile):
 
     def build_requiments(self):
         if self.options.ninja:
-            self.build_requires("ninja_installer/1.9.0@bincrafters/stable")
+            self.build_requires("ninja/1.9.0")
 
     def source(self):
         tools.patch(patch_file="fix_tests.patch")
