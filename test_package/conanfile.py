@@ -1,19 +1,21 @@
 # Tests for docopt Conan package
-# Dmitriy Vetutnev, Odant 2019
+# Dmitriy Vetutnev, Odant 2019 - 2020
 
 
-from conans import ConanFile, CMake
+from conans import ConanFile, CMake, tools
 
 
 class PackageTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
 
-    def imports(self):
-        self.copy("*.pdb", dst="bin", src="bin")
+    def build_requiments(self):
+        if self.options["docopt"].ninja:
+            self.build_requires("ninja_installer/1.9.0@bincrafters/stable")
 
     def build(self):
-        cmake = CMake(self, msbuild_verbosity='normal')
+        gen = "Ninja" if self.options["docopt"].ninja else None
+        cmake = CMake(self, generator=gen, msbuild_verbosity='normal')
         cmake.verbose = True
         cmake.configure()
         cmake.build()
